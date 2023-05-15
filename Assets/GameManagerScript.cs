@@ -6,7 +6,8 @@ public class GameManagerScript : MonoBehaviour
 {
     public GameObject playerPrefab;
     public GameObject boxPrefab;
-    public GameObject ClearPrefab;
+    public GameObject clearPrefab;
+    public GameObject particlePrefab;
 
     public GameObject clearText;
     //”z—ñ‚ÌéŒ¾
@@ -48,6 +49,8 @@ public class GameManagerScript : MonoBehaviour
         //    new Vector3(0, 0, 0),
         //    Quaternion.identity
         //    );
+
+        Screen.SetResolution(1920, 1080, false);
 
         //”z—ñ‚ÌÀ‘Ô‚Ìì¬‚Æ‰Šú‰»
         map = new int[,]{
@@ -110,7 +113,7 @@ public class GameManagerScript : MonoBehaviour
                 if (map[y, x] == 3)
                 {
                     GameObject instance = Instantiate(
-                        ClearPrefab,
+                        clearPrefab,
                         new Vector3(x, map.GetLength(0) - y, 0.01f),
                         Quaternion.identity
                         );
@@ -214,18 +217,50 @@ public class GameManagerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             MovePlayer(field[playerIndex.y, playerIndex.x].tag, new Vector2Int(playerIndex.x, playerIndex.y), new Vector2Int(playerIndex.x + 1, playerIndex.y));
+            for (int i = 0; i < 10; i++)
+            {
+                GameObject instance = Instantiate(
+                        particlePrefab,
+                        new Vector3(playerIndex.x, map.GetLength(0) - playerIndex.y, 0.01f),
+                        Quaternion.identity
+                        );
+            }
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             MovePlayer(field[playerIndex.y, playerIndex.x].tag, new Vector2Int(playerIndex.x, playerIndex.y), new Vector2Int(playerIndex.x - 1, playerIndex.y));
+            for (int i = 0; i < 10; i++)
+            {
+                GameObject instance = Instantiate(
+                            particlePrefab,
+                            new Vector3(playerIndex.x, map.GetLength(0) - playerIndex.y, 0.01f),
+                            Quaternion.identity
+                            );
+            }
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             MovePlayer(field[playerIndex.y, playerIndex.x].tag, new Vector2Int(playerIndex.x, playerIndex.y), new Vector2Int(playerIndex.x, playerIndex.y - 1));
+            for (int i = 0; i < 10; i++)
+            {
+                GameObject instance = Instantiate(
+                        particlePrefab,
+                        new Vector3(playerIndex.x, map.GetLength(0) - playerIndex.y, 0.01f),
+                        Quaternion.identity
+                        );
+            }
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             MovePlayer(field[playerIndex.y, playerIndex.x].tag, new Vector2Int(playerIndex.x, playerIndex.y), new Vector2Int(playerIndex.x, playerIndex.y + 1));
+            for (int i = 0; i < 10; i++)
+            {
+                GameObject instance = Instantiate(
+                        particlePrefab,
+                        new Vector3(playerIndex.x, map.GetLength(0) - playerIndex.y, 0.01f),
+                        Quaternion.identity
+                        );
+            }
         }
 
         //    if (Input.GetKeyDown(KeyCode.RightArrow))
